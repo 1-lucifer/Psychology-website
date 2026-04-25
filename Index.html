@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dr. Sharmila Clinic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- EMAILJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("gMHvyi880LxOJ1vv3"); // 🔴 replace this
+  })();
+</script>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6fb;
+    scroll-behavior:smooth;
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+header{
+    background:linear-gradient(135deg,#2f4f9c,#1f3770);
+    color:white;
+    padding:25px;
+    text-align:center;
+    animation:fadeUp .6s ease
+}
+
+nav{
+    background:#162a55;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    padding:12px;
+    position:sticky;
+    top:0;
+    z-index:10
+}
+
+nav button{
+    background:none;
+    border:none;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s
+}
+
+nav button:hover{color:#7db2ff;transform:scale(1.1)}
+
+section{
+    display:none;
+    max-width:1000px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    animation:fadeUp .6s ease
+}
+
+.active{display:block}
+
+.hero{
+    background:linear-gradient(135deg,#2f4f9c,#4a6edb);
+    color:white;
+    padding:25px;
+    border-radius:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px
+}
+
+.card{
+    background:#eef2ff;
+    padding:15px;
+    border-radius:12px;
+    transition:.3s;
+    cursor:pointer
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,.1)
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    border:1px solid #ccc
+}
+
+button{
+    background:linear-gradient(135deg,#2f4f9c,#1f3770);
+    color:white;
+    padding:12px;
+    border:none;
+    cursor:pointer;
+    border-radius:8px
+}
+
+button:hover{transform:scale(1.03)}
+
+.booking{
+    background:#f1f5ff;
+    padding:12px;
+    margin-top:10px;
+    border-radius:10px
+}
+
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:14px 16px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold
+}
+
+small{color:#666}
+
+.emergency{
+    margin-top:15px;
+    padding:15px;
+    background:#ff3b3b;
+    color:white;
+    border-radius:12px;
+    font-weight:bold
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Dr. Sharmila Clinic</h1>
+    <p>Psychologist | Anxiety • Depression • Therapy</p>
+</header>
+
+<nav>
+    <button onclick="show('home')">Home</button>
+    <button onclick="show('book')">Book</button>
+    <button onclick="show('admin')">Admin</button>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+
+<div class="hero">
+    <h2>Premium Mental Health Care</h2>
+    <p>Confidential therapy for anxiety, depression, stress, trauma & relationships.</p>
+</div>
+
+<h2>Why Choose Us</h2>
+<div class="grid">
+    <div class="card">✔ Confidential Therapy</div>
+    <div class="card">✔ Experienced Psychologist</div>
+    <div class="card">✔ Online & Offline Sessions</div>
+    <div class="card">✔ Personalized Treatment Plans</div>
+</div>
+
+<h2>About Doctor</h2>
+<div class="card">
+    <b>Dr. Sharmila</b><br>
+    3+ years experience in CBT, anxiety treatment, depression recovery & counseling.
+</div>
+
+<h2>Testimonials</h2>
+<div class="grid">
+    <div class="card">"Life changing experience" — Rahul</div>
+    <div class="card">"Very professional approach" — Priya</div>
+    <div class="card">"Helped me recover from anxiety" — Ahmed</div>
+</div>
+
+<h2>Working Hours</h2>
+<div class="card">
+Mon–Sat: 10 AM – 6 PM<br>
+Sun: Emergency support available
+</div>
+
+<div class="emergency">
+🚨 Emergency Mental Health Support Available 24/7 via WhatsApp.
+</div>
+
+</section>
+
+<!-- BOOKING -->
+<section id="book">
+<h2>Book Appointment</h2>
+
+<input id="name" placeholder="Full Name">
+<input id="phone" placeholder="10 Digit Phone Number">
+
+<select id="service">
+    <option value="">Select Service</option>
+    <option>Anxiety Therapy</option>
+    <option>Depression Treatment</option>
+    <option>Couples Therapy</option>
+    <option>Stress Management</option>
+</select>
+
+<input type="date" id="date">
+
+<select id="time">
+    <option value="">Select Time</option>
+    <option>10:00 AM</option>
+    <option>11:00 AM</option>
+    <option>12:00 PM</option>
+    <option>3:00 PM</option>
+    <option>4:00 PM</option>
+    <option>5:00 PM</option>
+</select>
+
+<textarea id="msg" placeholder="Describe your issue"></textarea>
+
+<button onclick="book()">Book Appointment</button>
+<p id="status"></p>
+</section>
+
+<!-- ADMIN -->
+<section id="admin">
+<h2>Admin Login</h2>
+<input type="password" id="pass" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<div id="panel" style="display:none;">
+    <h3>Appointments</h3>
+    <div id="list"></div>
+    <button onclick="clearAll()">Clear All</button>
+</div>
+</section>
+
+<a class="whatsapp" href="https://wa.me/91xxxxxxxxxx" target="_blank">💬 WhatsApp</a>
+
+<script>
+function show(id){
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function book(){
+    let name=document.getElementById('name').value;
+    let phone=document.getElementById('phone').value;
+    let service=document.getElementById('service').value;
+    let date=document.getElementById('date').value;
+    let time=document.getElementById('time').value;
+    let msg=document.getElementById('msg').value;
+
+    if(!name||!phone||!service||!date||!time){alert('Fill all fields');return;}
+    if(!/^[0-9]{10}$/.test(phone)){alert('Phone must be 10 digits');return;}
+
+    let bookings=JSON.parse(localStorage.getItem('bookings')||'[]');
+
+    if(bookings.find(b=>b.date===date&&b.time===time)){
+        alert('Slot already booked');return;
+    }
+
+    let newBooking={name,phone,service,date,time,msg};
+    bookings.push(newBooking);
+    localStorage.setItem('bookings',JSON.stringify(bookings));
+
+    // EMAIL NOTIFICATION
+    emailjs.send("service_55p6gym","template_hbt1p2b",{
+        name:name,
+        phone:phone,
+        service:service,
+        date:date,
+        time:time,
+        message:msg
+    }).then(()=>{
+        document.getElementById('status').innerText='Booked + Email sent to doctor!';
+    }).catch(()=>{
+        document.getElementById('status').innerText='Booked but email failed';
+    });
+}
+
+function login(){
+    if(document.getElementById('pass').value==='1234'){
+        document.getElementById('panel').style.display='block';
+        load();
+    } else alert('Wrong password');
+}
+
+function load(){
+    let list=document.getElementById('list');
+    let bookings=JSON.parse(localStorage.getItem('bookings')||'[]');
+    list.innerHTML='';
+
+    bookings.forEach((b,i)=>{
+        list.innerHTML+=`
+        <div class='booking'>
+        <b>${b.name}</b><br>
+        ${b.phone}<br>
+        ${b.service}<br>
+        ${b.date} - ${b.time}<br>
+        <small>${b.msg}</small>
+        </div>`;
+    });
+}
+
+function clearAll(){
+    localStorage.removeItem('bookings');
+    load();
+}
+</script>
+
+</body>
+</html>
